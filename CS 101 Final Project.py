@@ -26,9 +26,14 @@ with open("LokelaniIntermediate.csv") as lokelani_intermediate_file:
 class Student:
     #TODO: Complete this class. You will need to add additional methods.
     def __init__(self, student_data):
+        # Check if the student is in high school or in middle school.
+        # If the length of "student_data" is 5, then they are in high school
+        # If it is 3, then it's in middle school.
         if len(student_data) == 5:
+            # Set the name and grade to the corresponding value in "student_value"
             self.name = student_data[0]
             self.grade = int(student_data[1])
+            # Check if they meet the graduation requirements
             if student_data[2] == "met":
                 self.graduation_requirements = True
             else:
