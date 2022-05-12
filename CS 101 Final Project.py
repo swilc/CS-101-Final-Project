@@ -83,21 +83,58 @@ stats = {
 
 #TODO: Write the rest of your code
 
+test_list = []
+grad_pass = 0
 for x in range(len(maui_high)):
     new_student = Student(maui_high[x])
 
     if new_student.grade == 9 and new_student.credits >= 13 and new_student.transferring == False:
         new_student.grade = 10
+        stats["sophomores"] += 1
 
-    elif new_student.graduation_requirements != "met" and new_student.grade == 12:
-        continue
+    elif new_student.grade == 9 and new_student.transferring == False  and new_student.credits <= 13:
+        stats["freshmen"] += 1
+
+    
+
+    elif new_student.grade == 10 and new_student.credits >= 26 and new_student.transferring == False:
+        new_student.grade = 11
+        stats["juniors"] += 1
+    
+    elif new_student.grade == 10 and new_student.transferring == False and new_student.credits <= 26:
+        stats["sophomores"] += 1
+
+    elif new_student.grade == 11 and new_student.credits >= 39 and new_student.transferring == False:
+        new_student.grade = 12
+        stats["seniors"] += 1
+
+    elif new_student.grade == 11 and new_student.transferring == False and new_student.credits <= 39:
+        stats["juniors"] += 1
+
+    elif new_student.graduation_requirements == True and new_student.grade == 12 and new_student.credits >= 52:
+        stats["graduating"] += 1
+        grad_pass += 1
+        continue 
+
+    elif new_student.grade == 12:
+        stats["seniors"] += 1
 
     else:
+        test_list.append(new_student)
         continue
 
 
     new_maui_high.append(new_student)
 
+#total_seniors = maui_high.count(int(12))
+#This will not work idk why
+
+#stats["graduation_rate"] = grad_pass/total_seniors 
+
+print(len(new_maui_high))
+print(stats)
+print("")
+print(test_list)
 
 for x in range(len(lokelani_intermediate)):
     new_student = Student(lokelani_intermediate[x])
