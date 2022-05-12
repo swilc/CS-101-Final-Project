@@ -28,12 +28,11 @@ class Student:
     def __init__(self, student_data):
         #TODO: Complete this method to initialize student data. Be sure to use the variables outlined here (also seen in the __repr__ method)
         # student_data should be a list with containing:
-        # name at index 0 (make this a string)
-        # grade at index 1 (make this an int)
-        # graduation_requirements at index 2 (make this a boolean - True if they've been met, False if they haven't)
-        # credits at index 3 (make this an int)
-        # transferring at index 4 (make this a boolean - True if they're transferring, False if they're not)
-        pass
+        self.name = student_data[0]
+        self.grade = int(student_data[1])
+        self.graduation_requirements = bool(student_data[2])
+        self.credits = int(student_data[3])
+        self.transferring = bool(student_data[4])
     
     # defines the "less than" method for students (for sorting purposes)
     def __lt__(self, other):
@@ -66,6 +65,9 @@ stats = {
 
 #TODO: Write the rest of your code
 
+for x in range(len(maui_high)):
+    new_student = Student(maui_high[x])
+    new_maui_high.append(new_student)
 
 
 
