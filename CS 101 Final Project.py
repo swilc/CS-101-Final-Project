@@ -30,9 +30,15 @@ class Student:
         # student_data should be a list with containing:
         self.name = student_data[0]
         self.grade = int(student_data[1])
-        self.graduation_requirements = bool(student_data[2])
+        if student_data[2] == "met":
+            self.graduation_requirements = True
+        else:
+            self.graduation_requirements = False
         self.credits = int(student_data[3])
-        self.transferring = bool(student_data[4])
+        if student_data[4] == "transferring":
+            self.transferring = True
+        else:
+            self.transferring = False
     
     # defines the "less than" method for students (for sorting purposes)
     def __lt__(self, other):
@@ -67,6 +73,17 @@ stats = {
 
 for x in range(len(maui_high)):
     new_student = Student(maui_high[x])
+
+    if new_student.grade == 9 and new_student.credits >= 13 and new_student.transferring == False:
+        new_student.grade = 10
+
+    elif new_student.graduation_requirements != "met" and new_student.grade == 12:
+        continue
+
+    else:
+        continue
+
+
     new_maui_high.append(new_student)
 
 
