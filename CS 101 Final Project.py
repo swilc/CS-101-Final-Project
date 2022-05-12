@@ -26,19 +26,24 @@ with open("LokelaniIntermediate.csv") as lokelani_intermediate_file:
 class Student:
     #TODO: Complete this class. You will need to add additional methods.
     def __init__(self, student_data):
-        #TODO: Complete this method to initialize student data. Be sure to use the variables outlined here (also seen in the __repr__ method)
-        # student_data should be a list with containing:
-        self.name = student_data[0]
-        self.grade = int(student_data[1])
-        if student_data[2] == "met":
-            self.graduation_requirements = True
+        if len(student_data) == 5:
+            self.name = student_data[0]
+            self.grade = int(student_data[1])
+            if student_data[2] == "met":
+                self.graduation_requirements = True
+            else:
+                self.graduation_requirements = False
+            self.credits = int(student_data[3])
+            if student_data[4] == "transferring":
+                self.transferring = True
+            else:
+                self.transferring = False
+        elif len(student_data) == 3:
+            self.name = student_data[0]
+            self.grade = int(student_data[1])
+            self.high_school = str(student_data[2])
         else:
-            self.graduation_requirements = False
-        self.credits = int(student_data[3])
-        if student_data[4] == "transferring":
-            self.transferring = True
-        else:
-            self.transferring = False
+            print("[ERROR]>> Looks like your CSV file has the wrong number of values per student. (3 or 5)")
     
     # defines the "less than" method for students (for sorting purposes)
     def __lt__(self, other):
@@ -50,6 +55,13 @@ class Student:
         # This method has already been completed for you. Do NOT mess with it (for grading reasons).
         return self.name + "," + str(self.grade) + "," + str(self.graduation_requirements) + "," + str(self.credits) + "," + str(self.transferring)
 
+    def assignBlanks(self, student_data):
+        self.name = student_data[0]
+        self.grade = 9
+        self.graduation_requirements = "not met"
+        self.credits = 0
+        self.transferring = "not transferring"
+        
 # new_maui_high is a list for next year's student data. When you're finished, it should contain
 # a list of Student objects updated for next school year.
 new_maui_high = []
@@ -87,7 +99,15 @@ for x in range(len(maui_high)):
     new_maui_high.append(new_student)
 
 
+for x in range(len(lokelani_intermediate)):
+    new_student = Student(lokelani_intermediate[x])
 
+    if new_student.grade == 8 and new_student.high_school == "Maui High":
+        new_student.assignBlanks(lokelani_intermediate[x])
+        new_maui_high.append(new_student)
+        #[new_student.name, 9, 'not met', 0, 'not transferring']
+    else:
+        continue
 
 
 
