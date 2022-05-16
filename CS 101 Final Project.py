@@ -73,6 +73,13 @@ class Student:
         self.credits = 0
         self.transferring = False
         
+    def add_student(self, student_data):
+        self.name = student_data[0]
+        self.grade = student_data[1]
+        self.graduation_requirements = False
+        self.credits = student_data[2]
+        self.transferring = False
+            
 
 def menu(title, ln1="", ln2="", ln3=""):
     # Set up the blanks
