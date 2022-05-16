@@ -33,21 +33,26 @@ class Student:
             # Set the name and grade to the corresponding value in "student_value"
             self.name = student_data[0]
             self.grade = int(student_data[1])
-            # Check if they meet the graduation requirements
+            # Check if they meet the graduation requirements add set that variable to true/false
             if student_data[2] == "met":
                 self.graduation_requirements = True
             else:
                 self.graduation_requirements = False
+            # Set the number of credits corresponding to the value in "student_value"
             self.credits = int(student_data[3])
+            # Set to true/false if transferring or not
             if student_data[4] == "transferring":
                 self.transferring = True
             else:
                 self.transferring = False
         elif len(student_data) == 3:
+            # This part runs if the student is in middle school (only three values)
+            # Sets the corresponding values
             self.name = student_data[0]
             self.grade = int(student_data[1])
             self.high_school = str(student_data[2])
         else:
+            # This runs if there is the wrong number of values
             print("[ERROR]>> Looks like your CSV file has the wrong number of values per student. (3 or 5)")
     
     # defines the "less than" method for students (for sorting purposes)
@@ -60,6 +65,7 @@ class Student:
         # This method has already been completed for you. Do NOT mess with it (for grading reasons).
         return self.name + "," + str(self.grade) + "," + str(self.graduation_requirements) + "," + str(self.credits) + "," + str(self.transferring)
 
+    # Function to change the data structure from middle to high school and fill in the blanks
     def assignBlanks(self, student_data):
         self.name = student_data[0]
         self.grade = 9
