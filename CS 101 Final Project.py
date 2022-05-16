@@ -154,6 +154,20 @@ for x in range(len(lokelani_intermediate)):
     else:
         continue
 
+for x in range(len(maui_waena_intermediate)):
+    # Create a new class for the student with the student data
+    new_student = Student(maui_waena_intermediate[x])
+    if new_student.grade == 8 and new_student.high_school == "Maui High":
+        # Convert the format from middle to high school and fill in the blanks
+        new_student.assignBlanks(maui_waena_intermediate[x])
+        # Add it to the new students list
+        new_maui_high.append(new_student)
+        # Update stats with the new student
+        stats["maui_waena_incoming"] += 1
+        stats["freshmen"] += 1
+    else:
+        continue
+
 print(stats)
 print("")
 print(test_list)
