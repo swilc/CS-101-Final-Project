@@ -140,10 +140,6 @@ for x in range(len(maui_high)):
 
 stats["graduation_rate"] = grad_pass/total_seniors 
 
-print(stats)
-print("")
-print(test_list)
-
 for x in range(len(lokelani_intermediate)):
     # Create a new class for the student with the student data
     new_student = Student(lokelani_intermediate[x])
@@ -154,9 +150,13 @@ for x in range(len(lokelani_intermediate)):
         new_maui_high.append(new_student)
         # Update stats with the new student
         stats["lokelani_incoming"] += 1
+        stats["freshmen"] += 1
     else:
         continue
 
+print(stats)
+print("")
+print(test_list)
 
 # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
 # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
