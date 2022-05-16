@@ -233,7 +233,22 @@ for x in range(len(maui_waena_intermediate)):
     
     
 menu("Choose an Option", "Please choose an option:", "Add Student, Student Lookup,", "or Student Update")
- 
+
+menu_choice = input("What feature would you like to select? \nAdd a student, student lookup, or student update.\n")
+
+if menu_choice == "add":
+    add_list2 = []
+    
+    add_list2.append((input("What is the student's name?\n")))
+    add_list2.append(int(input("What is the student's grade?\n")))
+    add_list2.append(int(input("What is the student's credits?\n")))
+
+    add_new_student = Student(add_list2)
+    
+    add_new_student.add_student(add_list2)
+    
+    new_maui_high.append(add_new_student)
+    print(new_maui_high)    
 
 # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
 # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
