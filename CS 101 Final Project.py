@@ -69,9 +69,9 @@ class Student:
     def assignBlanks(self, student_data):
         self.name = student_data[0]
         self.grade = 9
-        self.graduation_requirements = "not met"
+        self.graduation_requirements = False
         self.credits = 0
-        self.transferring = "not transferring"
+        self.transferring = False
         
 # new_maui_high is a list for next year's student data. When you're finished, it should contain
 # a list of Student objects updated for next school year.
