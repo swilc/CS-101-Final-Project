@@ -108,8 +108,6 @@ for x in range(len(maui_high)):
     elif new_student.grade == 9 and new_student.transferring == False  and new_student.credits <= 13:
         stats["freshmen"] += 1
 
-    
-
     elif new_student.grade == 10 and new_student.credits >= 26 and new_student.transferring == False:
         new_student.grade = 11
         stats["juniors"] += 1
@@ -138,7 +136,6 @@ for x in range(len(maui_high)):
         test_list.append(new_student)
         continue
 
-
     new_maui_high.append(new_student)
 
 stats["graduation_rate"] = grad_pass/total_seniors 
@@ -156,9 +153,6 @@ for x in range(len(lokelani_intermediate)):
         #[new_student.name, 9, 'not met', 0, 'not transferring']
     else:
         continue
-
-
-
 
 
 # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
