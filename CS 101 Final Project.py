@@ -73,70 +73,8 @@ class Student:
         self.credits = 0
         self.transferring = False
         
-# Function for adding a menu GUI
+
 def menu(title, ln1="", ln2="", ln3=""):
-    # Set up the blanks
-    titleSpace=""
-    ln1Space=""
-    ln2Space=""
-    ln3Space=""
-
-    # Make sure everything is within the charachter limits
-    if len(title) > 30 or len(ln1) > 30 or len(ln2) > 30 or len(ln3) > 30:
-        print("Menu error!")
-
-    ### Title bar
-    # Add blank spaces
-    for i in range(int((30-int(len(title)))/2)):
-        titleSpace=" "+titleSpace
-    # Set the line
-    titleBar = ("|"+str(titleSpace)+str(title)+str(titleSpace))
-    # Add the end to the line, if short one character add a space
-    if int(len(titleBar)) < 31:
-        titleBar = titleBar + " |"
-    else:
-        titleBar = titleBar + "|"
-
-    ### First Line
-    for i in range(int((30-int(len(ln1)))/2)):
-        ln1Space=" "+ln1Space
-    line1 = ("|"+str(ln1Space)+str(ln1)+str(ln1Space))
-    if int(len(line1)) < 31:
-        line1 = line1 + " |"
-    else:
-        line1 = line1 + "|"
-
-    ### Second Line
-    for i in range(int((30-int(len(ln2)))/2)):
-        ln2Space=" "+ln2Space
-    line2 = ("|"+str(ln2Space)+str(ln2)+str(ln2Space))
-    if int(len(line2)) < 31:
-        line2 = line2 + " |"
-    else:
-        line2 = line2 + "|"
-
-    ### Third Line
-    for i in range(int((30-int(len(ln3)))/2)):
-        ln3Space=" "+ln3Space
-    line3 = ("|"+str(ln3Space)+str(ln3)+str(ln3Space))
-    if int(len(line3)) < 31:
-        line3 = line3 + " |"
-    else:
-        line3 = line3 + "|"
-        
-    # Print the lines
-    print ("")
-    print ("")
-    print ("+------------------------------+")
-    print (titleBar)
-    print ("+------------------------------+")
-    print (line1)
-    print (line2)
-    print (line3)
-    print ("+------------------------------+")
-    print ("")
-
-    def menu(title, ln1="", ln2="", ln3=""):
     # Set up the blanks
     titleSpace=""
     ln1Space=""
