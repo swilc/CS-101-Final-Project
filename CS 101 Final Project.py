@@ -132,6 +132,11 @@ def menu(title, ln1="", ln2="", ln3=""):
     else:
         line3 = line3 + "|"
         
+    if enter == False:
+        bottomBar = "+------------------------------+"
+    else:
+        bottomBar = "+---Press Enter to Continue!---+"
+        
     # Print the lines
     print ("")
     print ("")
@@ -143,7 +148,7 @@ def menu(title, ln1="", ln2="", ln3=""):
     print (line1)
     print (line2)
     print (line3)
-    print ("+------------------------------+")
+    print (bottomBar)
     print ("")
     
 # new_maui_high is a list for next year's student data. When you're finished, it should contain
