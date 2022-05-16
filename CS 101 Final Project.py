@@ -1,4 +1,5 @@
 import json
+import csv
 
 # You do not need to worry about reading data from files. Reading in all of the data to the
 # maui_high, maui_waena_intermediate, and lokelani_intermediate lists is handled for you.
@@ -72,14 +73,14 @@ class Student:
         self.graduation_requirements = False
         self.credits = 0
         self.transferring = False
-        
+
     def add_student(self, student_data):
         self.name = student_data[0]
         self.grade = student_data[1]
         self.graduation_requirements = False
         self.credits = student_data[2]
         self.transferring = False
-            
+        
 
 def menu(title, ln1="", ln2="", ln3=""):
     # Set up the blanks
@@ -132,6 +133,8 @@ def menu(title, ln1="", ln2="", ln3=""):
         line3 = line3 + "|"
         
     # Print the lines
+    print ("")
+    print ("")
     print ("")
     print ("")
     print ("+------------------------------+")
@@ -238,7 +241,6 @@ for x in range(len(maui_waena_intermediate)):
     else:
         continue
     
-    
 while True:
     menu("Choose an Option [\"q\"=quit]", "(1) Add Student", "(2) Student Lookup", "(3) Student Update")
 
@@ -247,6 +249,7 @@ while True:
     if menu_choice.lower() == "q":
         print ("[INFO] >> Exiting Code!")
         break
+
     if menu_choice == "1":
         add_list2 = []
         
@@ -266,17 +269,31 @@ while True:
         new_maui_high.append(add_new_student)
         
         menu("Add Student", "The student was added!")
-        
 
-# Keep all of the following code at the BOTTOM of the file (after all of the code you add).
-# Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
-new_maui_high.sort()
-with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
-    for student in new_maui_high:
-        maui_high_updated_file.write(repr(student) + "\n")
+    if menu_choice == "2":
 
-# Writing your stats to a file is taken care of for you here.
-with open("Stats.json", "w") as stats_file:
-    json.dump(stats, stats_file, indent=4)
+        menu("Add Student", "What is the student's name?")
+        name = input() 
 
-# After running this file, run CS 101 Final Project Checker.py to see if you got everything right!
+        csv_file = csv.reader(open('MauiHighUpdated.csv', "r"), delimiter=",")
+        for row in csv_file:
+            #if current rows 2nd value is equal to input, print that row
+            if name == row[0]:
+                print (row)
+
+    # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
+    # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
+    new_maui_high.sort()
+    with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
+        for student in new_maui_high:
+            maui_high_updated_file.write(repr(student) + "\n")
+
+    # Writing your stats to a file is taken care of for you here.
+    with open("Stats.json", "w") as stats_file:
+        json.dump(stats, stats_file, indent=4)
+
+    # After running this file, run CS 101 Final Project Checker.py to see if you got everything right!
+
+
+
+
