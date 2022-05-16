@@ -272,14 +272,14 @@ while True:
 
     if menu_choice == "2":
 
-        menu("Add Student", "What is the student's name?")
+        menu("Student Lookup", "What is the student's name?")
         name = input() 
 
         csv_file = csv.reader(open('MauiHighUpdated.csv', "r"), delimiter=",")
         for row in csv_file:
             #if current rows 2nd value is equal to input, print that row
             if name == row[0]:
-                print (row)
+                menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]))
 
     # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
     # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
