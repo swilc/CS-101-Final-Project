@@ -167,11 +167,7 @@ for x in range(len(maui_waena_intermediate)):
         stats["freshmen"] += 1
     else:
         continue
-
-print(stats)
-print("")
-print(test_list)
-
+    
 # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
 # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
 new_maui_high.sort()
