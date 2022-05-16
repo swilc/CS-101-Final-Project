@@ -145,12 +145,15 @@ print("")
 print(test_list)
 
 for x in range(len(lokelani_intermediate)):
+    # Create a new class for the student with the student data
     new_student = Student(lokelani_intermediate[x])
-
     if new_student.grade == 8 and new_student.high_school == "Maui High":
+        # Convert the format from middle to high school and fill in the blanks
         new_student.assignBlanks(lokelani_intermediate[x])
+        # Add it to the new students list
         new_maui_high.append(new_student)
-        #[new_student.name, 9, 'not met', 0, 'not transferring']
+        # Update stats with the new student
+        stats["lokelani_incoming"] += 1
     else:
         continue
 
