@@ -1,5 +1,6 @@
 import json
 import csv
+import time
 
 # You do not need to worry about reading data from files. Reading in all of the data to the
 # maui_high, maui_waena_intermediate, and lokelani_intermediate lists is handled for you.
@@ -171,11 +172,14 @@ stats = {
     "seniors":0 # the number of seniors for next year
 }
 
-#TODO: Write the rest of your code
-
 test_list = []
 grad_pass = 0
 total_seniors = 0
+
+# Add a progress bar
+menu("Processing Data", "25%", "███▒▒▒▒▒▒▒▒▒", "(Sort Maui High)")
+# Add a fake delay so you can read the text
+time.sleep(1.8)
 
 for x in range(len(maui_high)):
     new_student = Student(maui_high[x])
@@ -219,19 +223,10 @@ for x in range(len(maui_high)):
 
 stats["graduation_rate"] = grad_pass/total_seniors 
 
-for x in range(len(lokelani_intermediate)):
-    # Create a new class for the student with the student data
-    new_student = Student(lokelani_intermediate[x])
-    if new_student.grade == 8 and new_student.high_school == "Maui High":
-        # Convert the format from middle to high school and fill in the blanks
-        new_student.assignBlanks(lokelani_intermediate[x])
-        # Add it to the new students list
-        new_maui_high.append(new_student)
-        # Update stats with the new student
-        stats["lokelani_incoming"] += 1
-        stats["freshmen"] += 1
-    else:
-        continue
+# Add a progress bar
+menu("Processing Data", "50%", "██████▒▒▒▒▒▒", "(Sort Maui Middle)")
+# Add a fake delay so you can read the text
+time.sleep(1.2)
 
 for x in range(len(maui_waena_intermediate)):
     # Create a new class for the student with the student data
@@ -246,6 +241,30 @@ for x in range(len(maui_waena_intermediate)):
         stats["freshmen"] += 1
     else:
         continue
+    
+# Add a progress bar
+menu("Processing Data", "75%", "█████████▒▒▒", "(Sort Loke. Middle)")
+# Add a fake delay so you can read the text
+time.sleep(1.2)
+
+for x in range(len(lokelani_intermediate)):
+    # Create a new class for the student with the student data
+    new_student = Student(lokelani_intermediate[x])
+    if new_student.grade == 8 and new_student.high_school == "Maui High":
+        # Convert the format from middle to high school and fill in the blanks
+        new_student.assignBlanks(lokelani_intermediate[x])
+        # Add it to the new students list
+        new_maui_high.append(new_student)
+        # Update stats with the new student
+        stats["lokelani_incoming"] += 1
+        stats["freshmen"] += 1
+    else:
+        continue
+ 
+# Add a progress bar
+menu("Processing Data", "100%", "████████████", "(Writing Data)")
+# Add a fake delay so you can read the text
+time.sleep(2.8)
 
 ### Write initial data! ###
 # This is before the user can modify anything.
@@ -259,7 +278,7 @@ with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
 with open("Stats.json", "w") as stats_file:
     json.dump(stats, stats_file, indent=4)
 
-# Main user input loop
+### Main user input loop ###
 while True:
     # Add the menu GUI
     menu("Choose an Option [\"q\"=quit]", "(1) Add Student", "(2) Student Lookup", "(3) Student Update")
@@ -289,7 +308,8 @@ while True:
         
         new_maui_high.append(add_new_student)
         
-        menu("Add Student", "The student was added!")
+        menu("Add Student", "The student was added!", "", "", True)
+        input()
     elif menu_choice == "2":
         # This runs if the user wants to look up a student.
         # Prompt them for a name
@@ -315,6 +335,7 @@ while True:
         # This will run after all the checks.
         # If this runs, the user typed an invalid input.
         menu("Error!", "Looks like an invalid", "input there bud.", "", True)
+        print(menu_choice)
         input()
         
     # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
@@ -328,4 +349,16 @@ while True:
     with open("Stats.json", "w") as stats_file:
         json.dump(stats, stats_file, indent=4)
 
-    # After running this file, run CS 101 Final Project Checker.py to see if you got everything right!
+### Write the data one last time, just to be safe
+# Keep all of the following code at the BOTTOM of the file (after all of the code you add).
+# Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
+new_maui_high.sort()
+with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
+    for student in new_maui_high:
+        maui_high_updated_file.write(repr(student) + "\n")
+
+# Writing your stats to a file is taken care of for you here.
+with open("Stats.json", "w") as stats_file:
+    json.dump(stats, stats_file, indent=4)
+
+# After running this file, run CS 101 Final Project Checker.py to see if you got everything right!
