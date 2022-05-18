@@ -82,7 +82,7 @@ class Student:
         self.transferring = False
         
 
-def menu(title, ln1="", ln2="", ln3=""):
+def menu(title, ln1="", ln2="", ln3="", enter=False):
     # Set up the blanks
     titleSpace=""
     ln1Space=""
@@ -136,7 +136,7 @@ def menu(title, ln1="", ln2="", ln3=""):
         bottomBar = "+------------------------------+"
     else:
         bottomBar = "+---Press Enter to Continue!---+"
-        
+
     # Print the lines
     print ("")
     print ("")
