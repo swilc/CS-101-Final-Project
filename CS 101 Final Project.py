@@ -271,7 +271,7 @@ while True:
     if menu_choice.lower() == "q":
         menu("Info", "Exiting code..")
         break
-    if menu_choice == "1":
+    elif menu_choice == "1":
         add_list2 = []
         
         menu("Add Student", "What is the student's name?")
@@ -290,7 +290,7 @@ while True:
         new_maui_high.append(add_new_student)
         
         menu("Add Student", "The student was added!")
-    if menu_choice == "2":
+    elif menu_choice == "2":
         # This runs if the user wants to look up a student.
         # Prompt them for a name
         menu("Student Lookup", "What is the student's name?")
