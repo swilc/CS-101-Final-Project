@@ -131,7 +131,8 @@ def menu(title, ln1="", ln2="", ln3="", enter=False):
         line3 = line3 + " |"
     else:
         line3 = line3 + "|"
-        
+    
+    ### Check if the prompt should have "press enter to continue" at the bottom
     if enter == False:
         bottomBar = "+------------------------------+"
     else:
@@ -246,28 +247,30 @@ for x in range(len(maui_waena_intermediate)):
     else:
         continue
 
-
-# Keep all of the following code at the BOTTOM of the file (after all of the code you add).
-# Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
+### Write initial data! ###
+# This is before the user can modify anything.
+# Write initial data to the CSV file
 new_maui_high.sort()
 with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
     for student in new_maui_high:
         maui_high_updated_file.write(repr(student) + "\n")
 
-# Writing your stats to a file is taken care of for you here.
+# Write the initial stats
 with open("Stats.json", "w") as stats_file:
     json.dump(stats, stats_file, indent=4)
 
-
+# Main user input loop
 while True:
+    # Add the menu GUI
     menu("Choose an Option [\"q\"=quit]", "(1) Add Student", "(2) Student Lookup", "(3) Student Update")
 
+    # Ask the user for an option
     menu_choice = input("")
 
+    # Check to see if the user wants to quit.
     if menu_choice.lower() == "q":
-        print ("[INFO] >> Exiting Code!")
+        menu("Info", "Exiting code..")
         break
-
     if menu_choice == "1":
         add_list2 = []
         
@@ -287,25 +290,32 @@ while True:
         new_maui_high.append(add_new_student)
         
         menu("Add Student", "The student was added!")
-
     if menu_choice == "2":
+        # This runs if the user wants to look up a student.
+        # Prompt them for a name
         menu("Student Lookup", "What is the student's name?")
-        name = input() 
+        name = input()
 
+        # Open the CSV file with the new data
         csv_file = csv.reader(open('MauiHighUpdated.csv', "r"), delimiter=",")
-        attempts = 0
+        # Go through each row
         for row in csv_file:
-            #if current rows 2nd value is equal to input, print that row
+            # If the current row's first value (the name) equals the name that the user put in, give them the info.
             if name == row[0]:
                 menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
                 input("")
                 break
+        # At the very end of the loop, the current row will be either the last person in the CSV or the person that was selected.
+        # Double check that the selected name isn't equal to the currently selected row.
+        # If not, let the user know.
         if name != row[0]:
-            attempts +=1
             menu("Error!", "Could not find:", name, "Please try again.", True)
-            print(row[0])
-            print(name)
             input()
+    else:
+        # This will run after all the checks.
+        # If this runs, the user typed an invalid input.
+        menu("Error!", "Looks like an invalid", "input there bud.", "", True)
+        input()
         
     # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
     # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
