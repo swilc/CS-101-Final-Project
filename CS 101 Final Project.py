@@ -245,7 +245,20 @@ for x in range(len(maui_waena_intermediate)):
         stats["freshmen"] += 1
     else:
         continue
-    
+
+
+# Keep all of the following code at the BOTTOM of the file (after all of the code you add).
+# Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
+new_maui_high.sort()
+with open("MauiHighUpdated.csv", "w") as maui_high_updated_file:
+    for student in new_maui_high:
+        maui_high_updated_file.write(repr(student) + "\n")
+
+# Writing your stats to a file is taken care of for you here.
+with open("Stats.json", "w") as stats_file:
+    json.dump(stats, stats_file, indent=4)
+
+
 while True:
     menu("Choose an Option [\"q\"=quit]", "(1) Add Student", "(2) Student Lookup", "(3) Student Update")
 
@@ -276,16 +289,23 @@ while True:
         menu("Add Student", "The student was added!")
 
     if menu_choice == "2":
-
         menu("Student Lookup", "What is the student's name?")
         name = input() 
 
         csv_file = csv.reader(open('MauiHighUpdated.csv', "r"), delimiter=",")
+        attempts = 0
         for row in csv_file:
             #if current rows 2nd value is equal to input, print that row
             if name == row[0]:
-                menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]))
-        input("")
+                menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
+                input("")
+                break
+        if name != row[0]:
+            attempts +=1
+            menu("Error!", "Could not find:", name, "Please try again.", True)
+            print(row[0])
+            print(name)
+            input()
         
     # Keep all of the following code at the BOTTOM of the file (after all of the code you add).
     # Sorting and writing your updated new_maui_high data to a file is taken care of for you here.
@@ -299,7 +319,3 @@ while True:
         json.dump(stats, stats_file, indent=4)
 
     # After running this file, run CS 101 Final Project Checker.py to see if you got everything right!
-
-
-
-
