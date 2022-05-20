@@ -84,7 +84,7 @@ class Student:
     
     def change_student(self, row, index_count, user_change):
         if user_change == "1":
-            self.name = row[0]
+            self.transferring = row[4]
         
         elif user_change == "2":
             self.grade = row[1]
@@ -362,12 +362,12 @@ while True:
             if name == row[0]:
                 menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
                 input("")
-                menu("Student Update", "What do you want to change?", "(1)Name, (2)Grade, ", "(3)Credits, (4)Requirements?")
+                menu("Student Update", "What do you want to change?", "(1)Transferring, (2)Grade, ", "(3)Credits, (4)Requirements?")
                 user_change = input()
                 if user_change == "1":
-                    menu("Student Update", "What would you like", "to change the", "name to?")
-                    name_change = input()
-                    row[0] = name_change
+                    menu("Student Update", "What would you like", "to change the", "transferring to? (True/False)")
+                    transferring_change = input()
+                    row[4] = transferring_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
 
