@@ -84,16 +84,16 @@ class Student:
     
     def change_student(self, row, index_count, user_change):
         if user_change == "1":
-            self.transferring = row[4]
-        
-        elif user_change == "2":
             self.grade = row[1]
+
+        elif user_change == "2":
+            self.graduation_requirements = row[2]
 
         elif user_change == "3":
             self.credits = row[3]
         
         elif user_change == "4":
-            self.graduation_requirements = row[2]
+            self.transferring = row[4]
 
         new_maui_high.pop(index_count)
         
@@ -304,6 +304,7 @@ while True:
     if menu_choice.lower() == "q":
         menu("Info", "Exiting code..")
         break
+    # Extra credit 1: Add a student
     elif menu_choice == "1":
         add_list2 = []
         
@@ -324,6 +325,7 @@ while True:
         
         menu("Add Student", "The student was added!", "", "", True)
         input()
+    # Extra credit 2: Student lookup
     elif menu_choice == "2":
         # This runs if the user wants to look up a student.
         # Prompt them for a name
@@ -345,7 +347,7 @@ while True:
         if name != row[0]:
             menu("Error!", "Could not find:", name, "Please try again.", True)
             input()
-        
+    # Extra credit 3: Student update
     elif menu_choice == "3":
         # This runs if the user wants to look up a student.
         # Prompt them for a name
@@ -362,19 +364,19 @@ while True:
             if name == row[0]:
                 menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
                 input("")
-                menu("Student Update", "What do you want to change?", "(1)Transferring, (2)Grade, ", "(3)Credits, (4)Requirements?")
+                menu("Student Update", "What do you want to change?", "(1) Grade, (2) Requirements, ", "(3) Credits, (4) Transferring?")
                 user_change = input()
                 if user_change == "1":
-                    menu("Student Update", "What would you like", "to change the", "transferring to? (True/False)")
-                    transferring_change = input()
-                    row[4] = transferring_change
+                    menu("Student Update", "What would you like", "to change the", "grade to?")
+                    grade_change = input()
+                    row[1] = grade_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
 
                 elif user_change == "2":
-                    menu("Student Update", "What would you like", "to change the", "grade to?")
-                    grade_change = input()
-                    row[1] = grade_change
+                    menu("Student Update", "What would you like", "to change the requirements", "to? (True/False)")
+                    req_change = input()
+                    row[2] = req_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
                 
@@ -386,15 +388,13 @@ while True:
                     update.change_student(row, index_count-1, user_change)
 
                 elif user_change == "4":
-                    menu("Student Update", "What would you like", "to change the requirements", "to? (True/False)")
-                    req_change = input()
-                    row[2] = req_change
+                    menu("Student Update", "What would you like", "to change the", "transferring to? (True/False)")
+                    transferring_change = input()
+                    row[4] = transferring_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
 
-
                 new_maui_high.append(update)
-
 
                 break
         # At the very end of the loop, the current row will be either the last person in the CSV or the person that was selected.
