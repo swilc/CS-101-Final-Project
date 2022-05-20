@@ -349,7 +349,7 @@ while True:
     elif menu_choice == "3":
         # This runs if the user wants to look up a student.
         # Prompt them for a name
-        menu("Student Lookup", "What is the student's name?")
+        menu("Student Update", "What is the student's name?")
         name = input()
 
         # Open the CSV file with the new data
@@ -362,27 +362,32 @@ while True:
             if name == row[0]:
                 menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
                 input("")
-                user_change = input("What would you like to change (1) name, (2) grade, (3) credits, (4) requirements?\n")
+                menu("Student Update", "What do you want to change?", "(1)Name, (2)Grade, ", "(3)Credits, (4)Requirements?")
+                user_change = input()
                 if user_change == "1":
-                    name_change = input("What would you like to change the name to?\n")
+                    menu("Student Update", "What would you like", "to change the", "name to?")
+                    name_change = input()
                     row[0] = name_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
 
                 elif user_change == "2":
-                    grade_change = input("What would you like to change the grade to?\n")
+                    menu("Student Update", "What would you like", "to change the", "grade to?")
+                    grade_change = input()
                     row[1] = grade_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
                 
                 elif user_change == "3":
-                    credits_change = input("What would you like to change the credits to?\n")
+                    menu("Student Update", "What would you like", "to change the", "credits to?")
+                    credits_change = input()
                     row[3] = credits_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
 
                 elif user_change == "4":
-                    req_change = input("What would you like to change the requirements to? (True or False)\n")
+                    menu("Student Update", "What would you like", "to change the requirements", "to? (True/False)")
+                    req_change = input()
                     row[2] = req_change
                     update = Student(row)
                     update.change_student(row, index_count-1, user_change)
