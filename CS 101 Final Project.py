@@ -81,8 +81,22 @@ class Student:
         self.graduation_requirements = False
         self.credits = student_data[2]
         self.transferring = False
+    
+    def change_student(self, row, index_count, user_change):
+        if user_change == "1":
+            self.name = row[0]
         
+        elif user_change == "2":
+            self.grade = row[1]
 
+        elif user_change == "3":
+            self.credits = row[3]
+        
+        elif user_change == "4":
+            self.graduation_requirements = row[2]
+
+        new_maui_high.pop(index_count)
+        
 def menu(title, ln1="", ln2="", ln3="", enter=False):
     # Set up the blanks
     titleSpace=""
