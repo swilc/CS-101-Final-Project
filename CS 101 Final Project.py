@@ -331,6 +331,60 @@ while True:
         if name != row[0]:
             menu("Error!", "Could not find:", name, "Please try again.", True)
             input()
+        
+    elif menu_choice == "3":
+        # This runs if the user wants to look up a student.
+        # Prompt them for a name
+        menu("Student Lookup", "What is the student's name?")
+        name = input()
+
+        # Open the CSV file with the new data
+        csv_file = csv.reader(open('MauiHighUpdated.csv', "r"), delimiter=",")
+        # Go through each row
+        index_count = 0
+        for row in csv_file:
+            # If the current row's first value (the name) equals the name that the user put in, give them the info.
+            index_count += 1 
+            if name == row[0]:
+                menu(name, "Grade: " + str(row[1]) + " Credits: " + str(row[3]), "Meets Req.: " + str(row[2]), "Transferring: " + str(row[4]), True)
+                input("")
+                user_change = input("What would you like to change (1) name, (2) grade, (3) credits, (4) requirements?\n")
+                if user_change == "1":
+                    name_change = input("What would you like to change the name to?\n")
+                    row[0] = name_change
+                    update = Student(row)
+                    update.change_student(row, index_count-1, user_change)
+
+                elif user_change == "2":
+                    grade_change = input("What would you like to change the grade to?\n")
+                    row[1] = grade_change
+                    update = Student(row)
+                    update.change_student(row, index_count-1, user_change)
+                
+                elif user_change == "3":
+                    credits_change = input("What would you like to change the credits to?\n")
+                    row[3] = credits_change
+                    update = Student(row)
+                    update.change_student(row, index_count-1, user_change)
+
+                elif user_change == "4":
+                    req_change = input("What would you like to change the requirements to? (True or False)\n")
+                    row[2] = req_change
+                    update = Student(row)
+                    update.change_student(row, index_count-1, user_change)
+
+
+                new_maui_high.append(update)
+
+
+                break
+        # At the very end of the loop, the current row will be either the last person in the CSV or the person that was selected.
+        # Double check that the selected name isn't equal to the currently selected row.
+        # If not, let the user know.
+        else:
+            menu("Error!", "Could not find:", name, "Please try again.", True)
+            input() 
+
     else:
         # This will run after all the checks.
         # If this runs, the user typed an invalid input.
